@@ -43,7 +43,7 @@ class JobPosting(db.Model):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relations
-    organization = relationship("Organization", back_populates="job_postings")
+    organization = db.relationship("Organization", backref="job_postings")
     creator = relationship("User")
     interview_schedules = relationship("InterviewSchedule", back_populates="job_posting")
     applications = relationship("JobApplication", back_populates="job_posting", cascade="all, delete-orphan")

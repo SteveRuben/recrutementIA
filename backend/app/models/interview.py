@@ -40,20 +40,23 @@ class Interview(db.Model):
     # ai_contents - défini dans AIGeneratedContent
     # Relations définies explicitement (bien qu'elles soient aussi définies par backref dans les autres modèles)
     # Cela peut être utile pour avoir plus de contrôle sur les relations
-    questions = db.relationship('InterviewQuestion', backref='interview', cascade="all, delete-orphan")
-    responses = db.relationship('InterviewResponse', backref='interview', cascade="all, delete-orphan")
-    facial_analyses = db.relationship('FacialAnalysis', backref='interview', cascade="all, delete-orphan")
-    biometric_data = db.relationship('BiometricData', backref='interview', cascade="all, delete-orphan")
+    # questions = db.relationship('InterviewQuestion', backref='interview', cascade="all, delete-orphan")
+    # responses = db.relationship('InterviewResponse', backref='interview', cascade="all, delete-orphan")
+    # facial_analyses = db.relationship('FacialAnalysis', backref='interview', cascade="all, delete-orphan")
+    # biometric_data = db.relationship('BiometricData', backref='interview', cascade="all, delete-orphan")
     
     # Relations one-to-one (une interview a un seul résumé et un seul résumé biométrique)
     # uselist=False indique une relation one-to-one
-    summary = db.relationship('InterviewSummary', backref=db.backref('interview', uselist=False), 
-                           uselist=False, cascade="all, delete-orphan")
-    biometric_summary = db.relationship('BiometricSummary', backref=db.backref('interview', uselist=False), 
-                                     uselist=False, cascade="all, delete-orphan")
-    
+    # summary = db.relationship('InterviewSummary', backref=db.backref('interview', uselist=False), 
+    #                        uselist=False, cascade="all, delete-orphan")
+    # biometric_summary = db.relationship('BiometricSummary', backref=db.backref('interview', uselist=False), 
+    #                                  uselist=False, cascade="all, delete-orphan")
+
+    ai_assistant_id = db.Column(db.Integer, db.ForeignKey('ai_assistants.id'))
+    ai_assistant = db.relationship('AIAssistant', backref='interviews')
+
     creator = db.relationship('User', backref='created_interviews', foreign_keys=[created_by])
-    
+
     def to_dict(self):
         return {
             'id': self.id,

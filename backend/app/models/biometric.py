@@ -13,7 +13,8 @@ class FacialAnalysis(db.Model):
     confidence = db.Column(db.Float, nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
-    interview = db.relationship('Interview', backref='facial_analyses')
+    # interview = db.relationship('Interview', backref='facial_analyses')
+    interview = db.relationship('Interview', backref=db.backref('facial_analyses', cascade="all, delete-orphan"))
     
     def to_dict(self):
         return {
@@ -39,7 +40,8 @@ class BiometricSummary(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-    interview = db.relationship('Interview', backref='biometric_summary', uselist=False)
+    # interview = db.relationship('Interview', backref='biometric_summary', uselist=False)
+    interview = db.relationship('Interview', backref=db.backref('biombiometric_summarytric_data', cascade="all, delete-orphan"))
     
     def to_dict(self):
         return {

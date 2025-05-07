@@ -69,10 +69,11 @@ class AIAssistant(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relations
-    user = relationship('User', back_populates='ai_assistants')
+    # user = relationship('User', back_populates='ai_assistants')
+    user = db.relationship('User', backref=db.backref('ai_assistants', cascade="all, delete-orphan"))
     documents = relationship('AIAssistantDocument', back_populates='assistant', cascade='all, delete-orphan')
-    interviews = relationship('Interview', back_populates='ai_assistant')
-    organization = relationship("Organization", back_populates="ai_assistants_org")
+    # interviews = relationship('Interview', back_populates='ai_assistant')
+    organization = db.relationship('Organization', backref='ai_assistants_org')
     
     def __repr__(self):
         return f'<AIAssistant {self.name}>'

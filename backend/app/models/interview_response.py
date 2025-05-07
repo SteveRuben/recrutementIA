@@ -22,8 +22,10 @@ class InterviewResponse(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relations
-    interview = db.relationship('Interview', backref='responses')
+    # interview = db.relationship('Interview', backref='responses')
+    interview = db.relationship('Interview', backref=db.backref('responses', cascade="all, delete-orphan"))
     question = db.relationship('Question', backref='responses')
+
     # biometric_data - défini dans BiometricData
     
     def to_dict(self):

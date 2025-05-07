@@ -23,7 +23,8 @@ class InterviewSummary(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relations
-    interview = db.relationship('Interview', backref='summary', uselist=False)
+    # interview = db.relationship('Interview', backref='summary', uselist=False)
+    interview = db.relationship('Interview', backref=db.backref('interview_summary', cascade="all, delete-orphan"))
     creator = db.relationship('User', backref='created_summaries', foreign_keys=[created_by])
     
     def to_dict(self):

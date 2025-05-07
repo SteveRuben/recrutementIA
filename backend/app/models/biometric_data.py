@@ -32,7 +32,8 @@ class BiometricData(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     # Relations
-    interview = db.relationship('Interview', backref='biometric_data')
+    # interview = db.relationship('Interview', backref='biometric_data')
+    interview = db.relationship('Interview', backref=db.backref('biometric_data', cascade="all, delete-orphan"))
     question = db.relationship('Question', backref='biometric_data')
     response = db.relationship('Response', backref='biometric_data')
     
