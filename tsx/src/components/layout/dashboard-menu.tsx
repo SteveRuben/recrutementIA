@@ -101,9 +101,23 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ userRole = 'recruiter', s
     },
     {
       name: 'Analyse de CV',
-      href: '/resumes',
+      href: '/resumes/analyze',
       icon: DocumentTextIcon,
-      access: hasAccess('full_candidate_analysis') || true // Temporairement accessible à tous pour le développement
+      access: hasAccess('full_candidate_analysis') || true , // Temporairement accessible à tous pour le développement
+      submenu:[
+        {
+          name: 'Analyse de CV vs Emploi',
+          href: '/resumes/analyze'
+        },
+        {
+          name: 'Generation d\'exercice d\'evaluation',
+          href: '/resumes/generate'
+        },
+        {
+          name: 'Generation d\'exercice d\'entrainement',
+          href: '/resumes/generateTraining'
+        }
+      ]
     },
     {
       name: 'Assistants IA',

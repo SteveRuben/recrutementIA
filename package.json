@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "axios": "^1.9.0",
+    "formidable": "^3.5.4"
+  },
+  "devDependencies": {
+    "@types/formidable": "^3.4.5"
+  }
+}

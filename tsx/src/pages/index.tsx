@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import { ArrowRight, Check } from 'lucide-react';
 import { NextPage } from 'next';
-import User from '@/types/user';
+import {User} from '@/types/user';
 import { useAuth } from '@/provider/auth';
 import Layout from '@/components/layout/layout';
 

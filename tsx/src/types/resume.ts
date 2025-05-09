@@ -1,57 +1,41 @@
-// Types
-export interface ResumeUploadProps {
-  onAnalysisComplete?: (analysis: ResumeAnalysis) => void;
-  jobRole?: string;
-}
-
-export interface Contact {
-  email: string;
-  phone: string;
-  linkedin: string;
+export interface Education {
+  degree: string;
+  institution: string;
+  year: string;
 }
 
 export interface Experience {
   position: string;
   company: string;
   duration: string;
-  highlights: string[];
+  description?: string;
 }
 
-export interface Education {
-  degree: string;
-  institution: string;
-  year: string;
-  relevance: string;
-}
-
-export interface Question {
-  question: string;
-  rationale: string;
+export interface CandidateProfile {
+  strengths: string[];
+  gaps: string[];
+  education: Education[];
+  technical_skills: string[];
+  soft_skills: string[];
+  match_score: number;
+  recommended_focus_areas: string[];
 }
 
 export interface ResumeAnalysis {
-  resume_summary: string;
-  technical_skills: string[];
-  soft_skills: string[];
-  relevant_experience: Experience[];
-  education: Education[];
-  fit_score: number;
-  fit_justification: string;
-  strengths: string[];
-  gaps: string[];
-  recommended_questions: Question[];
-  contact_info: Contact;
-  metadata: {
-    filename: string;
-    analysis_timestamp: string;
-    job_role: string;
+  resume_analysis: {
+    resume_summary?: string;
+    technical_skills?: string[];
+    soft_skills?: string[];
+    education?: Education[];
+    relevant_experience?: Experience[];
+    strengths?: string[];
+    gaps?: string[];
   };
-  error?: string;
+  job_match: {
+    match_score: number;
+    matching_skills: string[];
+    missing_skills: string[];
+    relevant_experience?: string[];
+  };
+  candidate_profile: CandidateProfile;
 }
-
-
-export interface ResumeAnalysisResultProps {
-    analysis: ResumeAnalysis | null;
-    jobRole: string;
-  }
-  
