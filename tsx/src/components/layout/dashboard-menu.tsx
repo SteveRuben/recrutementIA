@@ -104,20 +104,6 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ userRole = 'recruiter', s
       href: '/resumes/analyze',
       icon: DocumentTextIcon,
       access: hasAccess('full_candidate_analysis') || true , // Temporairement accessible à tous pour le développement
-      submenu:[
-        {
-          name: 'Analyse de CV vs Emploi',
-          href: '/resumes/analyze'
-        },
-        {
-          name: 'Generation d\'exercice d\'evaluation',
-          href: '/resumes/generate'
-        },
-        {
-          name: 'Generation d\'exercice d\'entrainement',
-          href: '/resumes/generateTraining'
-        }
-      ]
     },
     {
       name: 'Assistants IA',
@@ -127,8 +113,12 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ userRole = 'recruiter', s
       submenu: [
         { name: 'Mes assistants', href: '/ai-assistants' },
         { name: 'Créer un assistant', href: '/ai-assistants/create' },
-        { name: 'Galerie de modèles', href: '/ai-assistants/gallery' }
-      ]
+        { name: 'Galerie de modèles', href: '/ai-assistants/gallery' },
+        {
+          name: 'Amelioration de cv',
+          href: '/resumes/resume-improve'
+        }
+        ]
     },
     {
       name: 'Analyse biométrique',
